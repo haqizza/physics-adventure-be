@@ -5,20 +5,22 @@ This project is a basic backend web application built using Express and connecte
 ## Project Structure
 
 ```
-express-mysql-backend
+physics-adventure
 ├── src
-│   ├── app.ts                # Entry point of the application
+│   ├── index.ts               # Application configuration
 │   ├── config
-│   │   └── database.ts       # Database connection configuration
-│   ├── controllers
-│   │   └── exampleController.ts # Controller for handling example data
-│   ├── routes
-│   │   └── exampleRoutes.ts   # Routes for example-related endpoints
-│   ├── models
-│   │   └── exampleModel.ts     # Model defining the structure of example data
+│   │   └── database.ts        # Database connection configuration
+│   ├── controllers            # Controllers folder
+│   ├── database               # Database-related folder
+│   │   └── migrations         # Database migration files
+│   ├── routes                 # Routes for endpoints
+│   ├── models                 # Model defining the structure of datas
 │   └── types
 │       └── index.ts           # Type definitions for the application
+├── server.ts                  # Entry point of the application
 ├── package.json               # NPM package configuration
+├── database.json              # Database setting for migration
+├── .env.example               # Environment variable file example
 ├── tsconfig.json              # TypeScript configuration
 └── README.md                  # Project documentation
 ```
@@ -28,7 +30,7 @@ express-mysql-backend
 1. **Clone the repository:**
    ```
    git clone <repository-url>
-   cd express-mysql-backend
+   cd physics-adventure
    ```
 
 2. **Install dependencies:**
@@ -37,15 +39,20 @@ express-mysql-backend
    ```
 
 3. **Configure the database:**
-   Update the database connection settings in `src/config/database.ts` to match your MySQL database credentials.
+   Set the database connection settings using `example.env` to match your MySQL database credentials.
 
-4. **Run the application:**
+4. **Migrate the database:**
+   ```
+   db-migrate --migrations-dir src/database/migrations up
+   ```
+
+5. **Run the application:**
    ```
    npm start
    ```
 
-5. **Access the API:**
-   The API will be available at `http://localhost:3000`. You can use tools like Postman or curl to interact with the endpoints.
+6. **Access the API:**
+   The API will be available at `http://localhost:8081`. You can use tools like Postman or curl to interact with the endpoints.
 
 ## Example Endpoints
 
@@ -57,13 +64,13 @@ express-mysql-backend
 ### Retrieve Examples
 
 ```bash
-curl -X GET http://localhost:3000/examples
+curl -X GET http://localhost:8081/examples
 ```
 
 ### Create Example
 
 ```bash
-curl -X POST http://localhost:3000/examples -H "Content-Type: application/json" -d '{"name": "Example Name"}'
+curl -X POST http://localhost:8081/examples -H "Content-Type: application/json" -d '{"name": "Example Name"}'
 ```
 
 ## License
