@@ -15,28 +15,34 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.createTable('lvl_3_hypothesis', {
+  return db.createTable('students_answer', {
     id: {
       type: 'int',
       primaryKey: true,
       autoIncrement: true,
-      length: 10,
-      notNull: true
+      length: 10
     },
-    hypothesis: 'string',
-    student_id: {
+    uuid: {
       type: 'string',
+      length: '40',
       notNull: true,
-      foreignKey: {
-        name: 'lvl_3_student_id_fk',
-        table: 'students',
-        rules: {
-          onDelete: 'CASCADE',
-          onUpdate: 'RESTRICT'
-        },
-        mapping: 'uuid'
-      }
+      unique: true
     },
+    name: { type: 'string', length: 50},
+    student_class: { type: 'string', length: 6},
+    lvl_2_state_1: 'text',
+    lvl_2_state_2: 'text',
+    lvl_2_state_3: 'text',
+    lvl_3_hypothesis_1: 'text',
+    lvl_3_hypothesis_2: 'text',
+    lvl_3_hypothesis_3: 'text',
+    lvl_5_table_p1_1: 'real',
+    lvl_5_table_p1_2: 'real',
+    lvl_5_table_p1_3: 'real',
+    lvl_5_table_p2_1: 'real',
+    lvl_5_table_p2_2: 'real',
+    lvl_5_table_p2_3: 'real',
+    lvl_7_conslusion: 'text',
     created_at: {
       type: 'timestamp',
       notNull: false
@@ -49,7 +55,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  return db.dropTable('lvl_3_hypothesis');
+  return db.dropTable('student_answer');
 };
 
 exports._meta = {
