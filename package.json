@@ -1,0 +1,31 @@
+{
+  "name": "physics-adventure",
+  "version": "1.0.0",
+  "description": "A backend web application using Express and MySQL.",
+  "main": "server.ts",
+  "scripts": {
+    "start": "ts-node server.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev server.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "db-migrate": "^0.11.14",
+    "db-migrate-mysql": "^3.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^4.17.1",
+    "mysql2": "^3.14.1",
+    "ts-node-dev": "^1.1.8",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^16.18.126",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
