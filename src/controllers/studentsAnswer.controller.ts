@@ -139,7 +139,7 @@ export const createStudentAnswer = (req: Request, res: Response) => {
       if (err) return res.status(500).json({ error: err });
 
       const body = {
-        code: '200',
+        code: '201',
         message: 'Student answer created',
         uuid: uuid
       }
