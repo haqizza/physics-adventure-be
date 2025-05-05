@@ -51,7 +51,7 @@ export const getStudentsAnswer = (req: Request, res: Response) => {
 };
 
 export const getStudentAnswerById = (req: Request, res: Response) => {
-  const uuid = req.params.studentId
+  const uuid = req.params.studentUuid
 
   db.query<RowDataPacket[]>('SELECT * FROM students_answer WHERE uuid = ? LIMIT 1', [uuid], (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -141,10 +141,90 @@ export const createStudentAnswer = (req: Request, res: Response) => {
       const body = {
         code: '200',
         message: 'Student answer created',
-        id: uuid
+        uuid: uuid
       }
       
       res.status(201).json(body);
     }
   );
+}; 
+
+export const updateStudentAnswer = (req: Request, res: Response) => {
+  const parsed = studentAnswerSchema.safeParse(req.body.data);
+  if (!parsed.success) {
+    return res.status(400).json({ error: parsed.error.format() });
+  }
+
+  const {
+    name,
+    studentClass,
+    state_1,
+    state_2,
+    state_3,
+    hypothesis_1,
+    hypothesis_2,
+    hypothesis_3,
+    table_p1_1,
+    table_p1_2,
+    table_p1_3,
+    table_p2_1,
+    table_p2_2,
+    table_p2_3,
+    conslusion
+  } = parsed.data;
+
+  const uuid = req.params.studentUuid
+
+  // Create SQL format timestamp
+  const date = new Date();
+  const timestamp = date.toISOString().slice(0, 19).replace('T', ' ');
+
+  db.query(
+    'INSERT INTO students_answer (name, student_class, lvl_2_state_1, lvl_2_state_2, lvl_2_state_3, lvl_3_hypothesis_1, lvl_3_hypothesis_2, lvl_3_hypothesis_3, lvl_5_table_p1_1, lvl_5_table_p1_2, lvl_5_table_p1_3, lvl_5_table_p2_1, lvl_5_table_p2_2, lvl_5_table_p2_3, lvl_7_conslusion, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE uuid = ?',
+    [
+      name,
+      studentClass,
+      state_1,
+      state_2,
+      state_3,
+      hypothesis_1,
+      hypothesis_2,
+      hypothesis_3,
+      table_p1_1,
+      table_p1_2,
+      table_p1_3,
+      table_p2_1,
+      table_p2_2,
+      table_p2_3,
+      conslusion,
+      timestamp,
+      uuid
+    ],
+    (err, result) => {
+      if (err) return res.status(500).json({ error: err });
+
+      const body = {
+        code: '200',
+        message: 'Student answer updated',
+        uuid: uuid
+      }
+      
+      res.status(200).json(body);
+    }
+  );
+};
+
+export const deleteStudentsAnswer = (req: Request, res: Response) => {
+  const uuid = req.params.studentUuid
+
+  db.query('DELETE FROM students_answer WHERE uuid = ?', [uuid] , (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+
+    const body = {
+      code: '200',
+      message: 'Student answer deleted successfully',
+    }
+
+    res.json(body);
+  });
 };
