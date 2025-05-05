@@ -39,7 +39,7 @@ physics-adventure
    ```
 
 3. **Configure the database:**
-   Set the database connection settings using `example.env` to match your MySQL database credentials.
+   Set the database connection settings using `.env.example` to match your MySQL database credentials.
 
 4. **Migrate the database:**
    ```
@@ -56,22 +56,12 @@ physics-adventure
 
 ## Example Endpoints
 
-- **GET /examples**: Retrieve a list of examples.
-- **POST /examples**: Create a new example.
-
-## Usage Examples
-
-### Retrieve Examples
-
-```bash
-curl -X GET http://localhost:8081/examples
-```
-
-### Create Example
-
-```bash
-curl -X POST http://localhost:8081/examples -H "Content-Type: application/json" -d '{"name": "Example Name"}'
-```
+- **GET /api/answer**: Retrieve all of students answer.
+- **GET /api/answer/:studentUuid**: Retrieve a student answer by student UUID.
+- **GET /api/answer/class/:studentClass**: Retrieve students answer filtered by student class.
+- **POST /api/answer**: Create a new student answer data.
+- **PUT /api/answer/:studentUuid**: Updated a student answer.
+- **DELETE /api/answer**: Delete a student answer.
 
 ## License
 
