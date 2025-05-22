@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Endpoints</title>
+  <style>
+    table {
+      border: solid 1px rgba(0,0,0,0.75);
+      border-spacing: 0;
+      td, th {
+        padding: 4px 8px;
+        border: solid 1px rgba(0,0,0,0.75);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Available Endpoints</h1>
+  <table>
+    <tr>
+      <th>METHOD</th>
+      <th>Endpoint</th>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/api/answer</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/api/answer</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/api/answer/:studentUuid</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/api/answer/class/:studentClass</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>/api/answer/:studentUuid</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/api/answer/:studentUuid</td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -8,6 +8,7 @@ This project is a basic backend web application built using Express and connecte
 physics-adventure
 ├── src
 │   ├── index.ts               # Application configuration
+│   ├── index.html             # Main page display
 │   ├── config
 │   │   └── database.ts        # Database connection configuration
 │   ├── controllers            # Controllers folder
@@ -61,7 +62,7 @@ physics-adventure
 - **GET /api/answer/class/:studentClass**: Retrieve students answer filtered by student class.
 - **POST /api/answer**: Create a new student answer data.
 - **PUT /api/answer/:studentUuid**: Updated a student answer.
-- **DELETE /api/answer**: Delete a student answer.
+- **DELETE /api/answer/:studentUuid**: Delete a student answer.
 
 ## License
 
