@@ -2,6 +2,8 @@ import express, { Application } from "express";
 import cors, { CorsOptions } from "cors";
 import Routes from "./routes";
 
+const FE_HOST: string = process.env.FE_HOST || 'localhost';
+
 export default class Server {
   constructor(app: Application) {
     this.config(app);
@@ -10,7 +12,7 @@ export default class Server {
 
   private config(app: Application): void {
     const corsOptions: CorsOptions = {
-      origin: "http://localhost:8081"
+      origin: FE_HOST
     };
 
     app.use(cors(corsOptions));
