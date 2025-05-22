@@ -9,12 +9,9 @@ export interface StudentColumns {
   lvl_3_hypothesis_1: string;
   lvl_3_hypothesis_2: string;
   lvl_3_hypothesis_3: string;
-  lvl_5_table_p1_1: number;
-  lvl_5_table_p1_2: number;
-  lvl_5_table_p1_3: number;
-  lvl_5_table_p2_1: number;
-  lvl_5_table_p2_2: number;
-  lvl_5_table_p2_3: number;
+  lvl_5_table_q_1: number;
+  lvl_5_table_q_2: number;
+  lvl_5_table_q_3: number;
   lvl_7_conslusion: string;
 }
 
@@ -29,11 +26,8 @@ export interface Student {
   hypothesis_1: string;
   hypothesis_2: string;
   hypothesis_3: string;
-  table_p1_1: number;
-  table_p1_2: number;
-  table_p1_3: number;
-  table_p2_1: number;
-  table_p2_2: number;
-  table_p2_3: number;
+  table_q_1: string;
+  table_q_2: string;
+  table_q_3: string;
   conslusion: string;
 }

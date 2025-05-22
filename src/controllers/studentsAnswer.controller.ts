@@ -21,12 +21,9 @@ const renameDataVariables = (resultRows: RowDataPacket[]) => {
       hypothesis_1: resultRows[i].lvl_3_hypothesis_1,
       hypothesis_2: resultRows[i].lvl_3_hypothesis_2,
       hypothesis_3: resultRows[i].lvl_3_hypothesis_3,
-      table_p1_1: resultRows[i].lvl_5_table_p1_1,
-      table_p1_2: resultRows[i].lvl_5_table_p1_2,
-      table_p1_3: resultRows[i].lvl_5_table_p1_3,
-      table_p2_1: resultRows[i].lvl_5_table_p2_1,
-      table_p2_2: resultRows[i].lvl_5_table_p2_2,
-      table_p2_3: resultRows[i].lvl_5_table_p2_3,
+      table_q_1: resultRows[i].lvl_5_table_q_1,
+      table_q_2: resultRows[i].lvl_5_table_q_2,
+      table_q_3: resultRows[i].lvl_5_table_q_3,
       conslusion: resultRows[i].lvl_7_conslusion,
     });
   };
@@ -99,12 +96,9 @@ export const createStudentAnswer = (req: Request, res: Response) => {
     hypothesis_1,
     hypothesis_2,
     hypothesis_3,
-    table_p1_1,
-    table_p1_2,
-    table_p1_3,
-    table_p2_1,
-    table_p2_2,
-    table_p2_3,
+    table_q_1,
+    table_q_2,
+    table_q_3,
     conslusion
   } = parsed.data;
 
@@ -115,7 +109,7 @@ export const createStudentAnswer = (req: Request, res: Response) => {
   const timestamp = date.toISOString().slice(0, 19).replace('T', ' ');
 
   db.query(
-    'INSERT INTO students_answer (name, student_class, uuid, lvl_2_state_1, lvl_2_state_2, lvl_2_state_3, lvl_3_hypothesis_1, lvl_3_hypothesis_2, lvl_3_hypothesis_3, lvl_5_table_p1_1, lvl_5_table_p1_2, lvl_5_table_p1_3, lvl_5_table_p2_1, lvl_5_table_p2_2, lvl_5_table_p2_3, lvl_7_conslusion, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    'INSERT INTO students_answer (name, student_class, uuid, lvl_2_state_1, lvl_2_state_2, lvl_2_state_3, lvl_3_hypothesis_1, lvl_3_hypothesis_2, lvl_3_hypothesis_3, lvl_5_table_q_1, lvl_5_table_q_2, lvl_5_table_q_3, lvl_7_conslusion, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
     [
       name,
       studentClass,
@@ -126,12 +120,9 @@ export const createStudentAnswer = (req: Request, res: Response) => {
       hypothesis_1,
       hypothesis_2,
       hypothesis_3,
-      table_p1_1,
-      table_p1_2,
-      table_p1_3,
-      table_p2_1,
-      table_p2_2,
-      table_p2_3,
+      table_q_1,
+      table_q_2,
+      table_q_3,
       conslusion,
       timestamp
     ],
@@ -164,12 +155,9 @@ export const updateStudentAnswer = (req: Request, res: Response) => {
     hypothesis_1,
     hypothesis_2,
     hypothesis_3,
-    table_p1_1,
-    table_p1_2,
-    table_p1_3,
-    table_p2_1,
-    table_p2_2,
-    table_p2_3,
+    table_q_1,
+    table_q_2,
+    table_q_3,
     conslusion
   } = parsed.data;
 
@@ -190,12 +178,9 @@ export const updateStudentAnswer = (req: Request, res: Response) => {
       hypothesis_1,
       hypothesis_2,
       hypothesis_3,
-      table_p1_1,
-      table_p1_2,
-      table_p1_3,
-      table_p2_1,
-      table_p2_2,
-      table_p2_3,
+      table_q_1,
+      table_q_2,
+      table_q_3,
       conslusion,
       timestamp,
       uuid

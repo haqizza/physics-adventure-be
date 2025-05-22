@@ -36,12 +36,9 @@ exports.up = function(db) {
     lvl_3_hypothesis_1: 'text',
     lvl_3_hypothesis_2: 'text',
     lvl_3_hypothesis_3: 'text',
-    lvl_5_table_p1_1: 'real',
-    lvl_5_table_p1_2: 'real',
-    lvl_5_table_p1_3: 'real',
-    lvl_5_table_p2_1: 'real',
-    lvl_5_table_p2_2: 'real',
-    lvl_5_table_p2_3: 'real',
+    lvl_5_table_q_1: 'text',
+    lvl_5_table_q_2: 'text',
+    lvl_5_table_q_3: 'text',
     lvl_7_conslusion: 'text',
     created_at: {
       type: 'timestamp',
@@ -55,7 +52,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  return db.dropTable('student_answer');
+  return db.dropTable('students_answer');
 };
 
 exports._meta = {

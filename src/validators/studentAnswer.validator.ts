@@ -9,12 +9,9 @@ export const studentAnswerSchema = z.object({
   hypothesis_1: z.string(),
   hypothesis_2: z.string(),
   hypothesis_3: z.string(),
-  table_p1_1: z.number(),
-  table_p1_2: z.number(),
-  table_p1_3: z.number(),
-  table_p2_1: z.number(),
-  table_p2_2: z.number(),
-  table_p2_3: z.number(),
+  table_q_1: z.string(),
+  table_q_2: z.string(),
+  table_q_3: z.string(),
   conslusion: z.string()
 });
 
