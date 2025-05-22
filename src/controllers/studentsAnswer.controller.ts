@@ -53,12 +53,12 @@ export const getStudentAnswerById = (req: Request, res: Response) => {
   db.query<RowDataPacket[]>('SELECT * FROM students_answer WHERE uuid = ? LIMIT 1', [uuid], (err, results) => {
     if (err) return res.status(500).json({ error: err });
 
-    const data = renameDataVariables(results);
+    const data = renameDataVariables(results)[0]
 
     const body = {
       code: '200',
       message: 'Student answer by id retrieved successfully',
-      data: results
+      data: data
     }
 
     res.json(body);
@@ -71,10 +71,12 @@ export const getStudentsAnswerByClass = (req: Request, res: Response) => {
   db.query<RowDataPacket[]>('SELECT * FROM students_answer WHERE student_class = ?', [studentClass] , (err, results) => {
     if (err) return res.status(500).json({ error: err });
 
+    let data = renameDataVariables(results)
+
     const body = {
       code: '200',
       message: 'Students answer by class retrieved successfully',
-      data: results
+      data: data
     }
 
     res.json(body);
