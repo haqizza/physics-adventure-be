@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node server.ts",
     "build": "tsc",
+    "postbuild": "cp src/index.html dist/src/",
     "dev": "ts-node-dev server.ts",
     "serve": "pm2 start ./dist/index.js --name phyadv-be"
   },
