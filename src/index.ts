@@ -15,20 +15,18 @@ export default class Server {
     const corsOptions: CorsOptions = {
       origin: FE_HOST
     };
-
-    app.use(cors(corsOptions));
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
-
-    app.use((err: any, req: any, res: any, next: any) => {
-      logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-      res.status(err.status || 500).send('Something broke!');
-    });
-
-    process.on('uncaughtException', function(event) {
-      console.log('An error has occured. error is: %s and stack trace is: %s', event, event.stack);
-      console.log("Process will restart now.");
+    try{
+      app.use(cors(corsOptions));
+      app.use(express.json());
+      app.use(express.urlencoded({ extended: true }));
+  
+      app.use((err: any, req: any, res: any, next: any) => {
+        logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        res.status(err.status || 500).send('Something broke!');
+      });
+    } catch(error){
+      console.error("Server failed:", error);
       process.exit(1);
-    })
+    }
   }
 }
