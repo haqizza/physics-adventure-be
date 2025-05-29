@@ -3,7 +3,8 @@ import db from '../config/database';
 import { studentAnswerSchema } from '../validators/studentAnswer.validator';
 import { v4 as uuidv4 } from 'uuid';
 import { Student, StudentColumns } from '../types';
-import { RowDataPacket } from 'mysql2';
+import { QueryError, RowDataPacket } from 'mysql2';
+
 
 
 const renameDataVariables = (resultRows: RowDataPacket[]) => {
@@ -31,13 +32,25 @@ const renameDataVariables = (resultRows: RowDataPacket[]) => {
   return dataRows
 }
 
+const handleQueryError = (source: string, err: QueryError)  => {
+  return {
+    errorSource: 'getStudentsAnswer',
+    error: {
+      message: err.message,
+      code: err.code,
+      errno: err.errno,
+      fatal: err.fatal
+    }
+  }
+}
+
 export const getStudentsAnswer = (req: Request, res: Response) => {
   try {
     db.query<RowDataPacket[]>('SELECT * FROM students_answer', (err, results) => {
-      if (err) return res.status(500).json({
-        errorSource: 'getStudentsAnswer',
-        error: err
-      });
+      if (err) {
+        const jsonBody = handleQueryError('getStudentsAnswer', err)
+        return res.status(500).json(jsonBody);
+      }
   
       const data = renameDataVariables(results)
   
@@ -60,10 +73,10 @@ export const getStudentAnswerById = (req: Request, res: Response) => {
     const uuid = req.params.studentUuid
   
     db.query<RowDataPacket[]>('SELECT * FROM students_answer WHERE uuid = ? LIMIT 1', [uuid], (err, results) => {
-      if (err) return res.status(500).json({
-        errorSource: 'getStudentAnswerById',
-        error: err
-      });
+      if (err) {
+        const jsonBody = handleQueryError('getStudentAnswerById', err)
+        return res.status(500).json(jsonBody);
+      }
   
       const data = renameDataVariables(results)
   
@@ -86,11 +99,11 @@ export const getStudentsAnswerByClass = (req: Request, res: Response) => {
     const studentClass = req.params.studentClass
   
     db.query<RowDataPacket[]>('SELECT * FROM students_answer WHERE student_class = ?', [studentClass] , (err, results) => {
-      if (err) return res.status(500).json({
-        errorSource: 'getStudentsAnswerByClass',
-        error: err
-      })
-  
+      if (err) {
+        const jsonBody = handleQueryError('getStudentsAnswerByClass', err)
+        return res.status(500).json(jsonBody);
+      }
+
       let data = renameDataVariables(results)
   
       const body = {
@@ -156,10 +169,10 @@ export const createStudentAnswer = (req: Request, res: Response) => {
         timestamp
       ],
       (err, result) => {
-        if (err) return res.status(500).json({
-          errorSource: 'createStudentAnswer',
-          error: err
-        })
+        if (err) {
+          const jsonBody = handleQueryError('createStudentAnswer', err)
+          return res.status(500).json(jsonBody);
+        }
   
         const body = {
           code: '201',
@@ -225,10 +238,10 @@ export const updateStudentAnswer = (req: Request, res: Response) => {
         uuid
       ],
       (err, result) => {
-        if (err) return res.status(500).json({
-          errorSource: 'updateStudentAnswer',
-          error: err
-        })
+        if (err) {
+          const jsonBody = handleQueryError('updateStudentAnswer', err)
+          return res.status(500).json(jsonBody);
+        }
   
         const body = {
           code: '200',
@@ -250,10 +263,10 @@ export const deleteStudentsAnswer = (req: Request, res: Response) => {
     const uuid = req.params.studentUuid
   
     db.query('DELETE FROM students_answer WHERE uuid = ?', [uuid] , (err, results) => {
-      if (err) return res.status(500).json({
-        errorSource: 'deleteStudentsAnswer',
-        error: err
-      })
+      if (err) {
+        const jsonBody = handleQueryError('deleteStudentsAnswer', err)
+        return res.status(500).json(jsonBody);
+      }
   
       const body = {
         code: '200',
