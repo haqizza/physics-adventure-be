@@ -4,7 +4,7 @@ import entryRoutes from "./entry.routes";
 
 export default class Routes {
   constructor(app: Application) {
-    app.use("/answer", studentAnswerRoutes);
-    app.use("/", entryRoutes);
+    app.use("/answer", studentAnswerRoutes)
+    app.use("/", entryRoutes)
   }
 }

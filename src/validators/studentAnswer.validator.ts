@@ -13,7 +13,7 @@ export const studentAnswerSchema = z.object({
   table_q_2: z.string(),
   table_q_3: z.string(),
   conslusion: z.string()
-});
+})
 
-export type StudentANswerInput = z.infer<typeof studentAnswerSchema>;
+export type StudentAnswerInput = z.infer<typeof studentAnswerSchema>
 

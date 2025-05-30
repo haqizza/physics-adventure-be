@@ -9,10 +9,10 @@ var seed;
   * This enables us to not have to rely on NODE_PATH.
   */
 exports.setup = function(options, seedLink) {
-  dbm = options.dbmigrate;
-  type = dbm.dataType;
-  seed = seedLink;
-};
+  dbm = options.dbmigrate
+  type = dbm.dataType
+  seed = seedLink
+}
 
 exports.up = function(db) {
   return db.createTable('students_answer', {
@@ -48,13 +48,13 @@ exports.up = function(db) {
       type: 'timestamp',
       notNull: false 
     }
-  });
-};
+  })
+}
 
 exports.down = function(db) {
-  return db.dropTable('students_answer');
-};
+  return db.dropTable('students_answer')
+}
 
 exports._meta = {
   "version": 1
-};
+}

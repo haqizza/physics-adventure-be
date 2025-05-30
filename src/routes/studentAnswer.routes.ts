@@ -6,15 +6,15 @@ import {
   createStudentAnswer,
   updateStudentAnswer,
   deleteStudentsAnswer
-} from '../controllers/studentsAnswer.controller';
+} from '../controllers/studentsAnswer.controller'
 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/', getStudentsAnswer);
-router.get('/:studentUuid', getStudentAnswerById);
-router.get('/class/:studentClass', getStudentsAnswerByClass);
-router.post('/', createStudentAnswer);  
-router.put('/:studentUuid', updateStudentAnswer);
-router.delete('/:studentUuid', deleteStudentsAnswer);
+router.get('/', getStudentsAnswer)
+router.get('/:studentUuid', getStudentAnswerById)
+router.get('/class/:studentClass', getStudentsAnswerByClass)
+router.post('/', createStudentAnswer)  
+router.put('/:studentUuid', updateStudentAnswer)
+router.delete('/:studentUuid', deleteStudentsAnswer)
 
-export default router;
+export default router

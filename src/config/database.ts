@@ -1,7 +1,7 @@
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config()
 
 const db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -13,4 +13,4 @@ const db = mysql.createPool({
   queueLimit: 0
 })
 
-export default db;
+export default db
